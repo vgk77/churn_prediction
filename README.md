@@ -1,4 +1,3 @@
-# Clients churn prediction.
-Веб-приложение для оценки вероятности ухода клиентов в следующем расчетном периоде (месяц, квартал) на основе исторических данных
+# Churn prediction.
+Simple web app to predict customers churn in telecomunications companies.
 
-test
