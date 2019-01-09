@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+
+  cp_server:
+    container_name: cp_server
+    restart: always
+    build: ./cp_server
+    ports:
+      - "8000:8000"
+    command: gunicorn -w 3 -b :8000 main:app
+
+
+  nginx:
+    container_name: nginx
+    restart: always
+    build: ./nginx
+    ports:
+      - "8080:80"
+    depends_on:
+      - cp_server
