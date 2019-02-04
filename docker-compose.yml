@@ -2,8 +2,8 @@ version: '3'
 
 services:
 
-  cp_server:
-    container_name: cp_server
+  predict_server:
+    container_name: predict_server
     restart: always
     build: ./cp_server
     ports:
