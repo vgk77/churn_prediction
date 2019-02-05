@@ -1,15 +1,23 @@
 import dash
+import dash_html_components as html
+from flask import render_template
+
 
 
 external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
 
 
 def create_app():
-    app = dash.Dash(__name__)  # , external_stylesheets=external_stylesheets)
+    app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
     server = app.server
 
-    @server.route('/')
-    def index():
-        return 'Welcome to Churn Prediction WebApp !'
+    app.layout = html.Div([
+        html.H2('Hello Dash')
+    ])
 
-    return app
+    @server.route('/main')
+    def index():
+        title = 'Churn Prediction'
+        return render_template('index.html', page_title=title)
+
+    return server

@@ -4,6 +4,14 @@
 		"selected_items":
 		[
 			[
+				"da",
+				"dash_app\tstatement"
+			],
+			[
+				"F",
+				"Flask\tmodule"
+			],
+			[
 				"cli",
 				"client_id"
 			],
@@ -38,10 +46,6 @@
 			[
 				"fu",
 				"function"
-			],
-			[
-				"da",
-				"dash\tmodule"
 			],
 			[
 				"new",
@@ -92,10 +96,6 @@
 				"__name__\tinstance"
 			],
 			[
-				"F",
-				"Flask\tclass"
-			],
-			[
 				"p",
 				"pow\tfunction"
 			]
@@ -103,6 +103,33 @@
 	},
 	"buffers":
 	[
+		{
+			"file": ".gitignore",
+			"settings":
+			{
+				"buffer_size": 1251,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "webapp/app/__init__.py",
+			"settings":
+			{
+				"buffer_size": 423,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "webapp/app_run.sh",
+			"settings":
+			{
+				"buffer_size": 65,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		}
 	],
 	"build_system": "",
 	"build_system_choices":
@@ -210,10 +237,18 @@
 	},
 	"expanded_folders":
 	[
-		"/Users/val/projects/lp11/churn_prediction"
+		"/Users/val/projects/lp11/churn_prediction",
+		"/Users/val/projects/lp11/churn_prediction/webapp",
+		"/Users/val/projects/lp11/churn_prediction/webapp/app"
 	],
 	"file_history":
 	[
+		"/Users/val/projects/lp11/churn_prediction/webapp/app/__init__.py",
+		"/Users/val/projects/lp11/churn_prediction/webapp/app/__init__.py.old",
+		"/Users/val/Downloads/churn_prediction-master/cp_dash_client/app/index.py",
+		"/Users/val/projects/lp11/churn_prediction/predictapp/app/__init__.py",
+		"/Users/val/Downloads/churn_prediction-master/cp_dash_client/app/app.py",
+		"/Users/val/projects/lp11/churn_prediction/predictapp/requirements.txt",
 		"/Users/val/Dropbox/projects/lp11/churn_prediction/docker-compose.yml",
 		"/Users/val/Dropbox/projects/lp11/churn_prediction/predict_server/app/main.py",
 		"/Users/val/Dropbox/projects/lp11/churn_prediction/predict_server/app/logic.py",
@@ -271,6 +306,7 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"sublime"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -288,8 +324,96 @@
 	"groups":
 	[
 		{
+			"selected": 1,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": ".gitignore",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1251,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1251,
+								1251
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Git Formats/Git Ignore.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 1032.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "webapp/app/__init__.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 423,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								266,
+								266
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "webapp/app_run.sh",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 65,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								65,
+								65
+							]
+						],
+						"settings":
+						{
+							"SL.74.region_keys":
+							[
+							],
+							"syntax": "Packages/ShellScript/Bash.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				}
 			]
 		}
 	],
