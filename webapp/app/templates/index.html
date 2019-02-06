@@ -1,0 +1,185 @@
+{% extends 'base.html' %}
+{% block body_content %}
+<header>
+    <h1 class="text-center my-4">Прогноз вероятности ухода клиентов</h1>    
+</header>
+  <div class="container">
+     <script type=text/javascript src="{{ url_for('static', filename='addform.js') }}"></script>
+
+    <form>
+      <div class="form-row">
+        <div class="col-md-4 form-group">
+          <label for="client_id">Клиент</label>
+          <input type="text" class="form-control" id="client_id">
+        </div>
+        <div class="col">
+          <!-- <div class="form-group"> -->
+                <label for="gender">Пол</label>
+                <select class="form-control" id="gender">
+                  <option value="" selected disabled hidden>--</option>
+                  <option>Мужчина</option>
+                  <option>Женщина</option>
+                </select>
+            <!-- </div> -->
+          <!-- <label for="client_id">Пол</label>
+          <input type="text" class="form-control" id="gender"> -->
+        </div>
+        <div class="col">
+          <label for="senior">Пожилой</label>
+          <select class="form-control" id="senior" value="">
+            <option value="" selected disabled hidden>--</option>
+            <option>Да</option>
+            <option>Нет</option>
+          </select>
+        </div>
+        <div class="col">
+          <label for="partner">Партнер</label>
+          <select class="form-control" id="partner">
+            <option value="" selected disabled hidden>--</option>
+            <option>Да</option>
+            <option>Нет</option>
+          </select>
+        </div>
+        <div class="col">
+          <label for="dependents">Иждивенец</label>
+          <select class="form-control" id="dependents">
+            <option value="" selected disabled hidden>--</option>
+            <option>Да</option>
+            <option>Нет</option>
+          </select>
+        </div>
+        <div class="col">
+          <label for="tenure">Срок владения</label>
+          <input type="number" class="form-control" id="tenure">
+        </div>
+      </div>
+
+
+      <div class="form-row">
+        <div class="col form-group">
+          <label for="phone_service">Услуги телефонии</label>
+          <select class="form-control" id="phone_service">
+            <option value="" selected disabled hidden>--</option>
+            <option value="yes">Да</option>
+            <option value="no">Нет</option>
+          </select>
+        </div>
+        <div class="col">
+          <label for="multilines">Многоканальные линии</label>
+          <select class="form-control" id="multilines">
+            <option value="" selected disabled hidden>--</option>
+            <option value="no_phone_service">Нет услуг телефонии</option>
+            <option value="yes">Да</option>
+            <option value="no">Нет</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="col-md-6">
+          <label for="internet_service">Услуги интернета</label>
+          <select class="form-control" id="internet_service">
+            <option value="" selected disabled hidden>--</option>
+            <option value="dsl">DSL</option>
+            <option value="fiber_optic">Fiber optic</option>
+            <option value="no">Нет</option>
+          </select>
+        </div>
+        <div class="col">
+          <label for="online_security">Безопасность онлайн</label>
+          <select class="form-control" id="online_security">
+            <option value="" selected disabled hidden>--</option>
+            <option value="no_internet_service">Нет интернет услуг</option>
+            <option value="yes">Да</option>
+            <option value="no">Нет</option>
+          </select>
+          <label for="streaming_tv">Потоковое ТВ</label>
+          <select class="form-control" id="streaming_tv">
+            <option value="" selected disabled hidden>--</option>
+            <option value="no_internet_service">Нет интернет услуг</option>
+            <option value="yes">Да</option>
+            <option value="no">Нет</option>
+          </select>
+        </div>
+        <div class="col">
+          <label for="online_backup">Онлайн хранилище</label>
+          <select class="form-control" id="online_backup">
+            <option value="" selected disabled hidden>--</option>
+            <option value="no_internet_service">Нет интернет услуг</option>
+            <option value="yes">Да</option>
+            <option value="no">Нет</option>
+          </select>
+          <label for="streaming_movies">Потоковое кино</label>
+          <select class="form-control" id="streaming_movies">
+            <option value="" selected disabled hidden>--</option>
+            <option value="no_internet_service">Нет интернет услуг</option>
+            <option value="yes">Да</option>
+            <option value="no">Нет</option>
+          </select>
+        </div>
+        <div class="col">
+          <label for="devprotect">Защита устройства</label>
+          <select class="form-control" id="devprotect">
+            <option value="" selected disabled hidden>--</option>
+            <option value="no_internet_service">Нет интернет услуг</option>
+            <option value="yes">Да</option>
+            <option value="no">Нет</option>
+          </select>
+          <label for="support">Техподдержка</label>
+          <select class="form-control" id="support">
+            <option value="" selected disabled hidden>--</option>
+            <option value="no_internet_service">Нет интернет услуг</option>
+            <option value="yes">Да</option>
+            <option value="no">Нет</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="col-md-4 form-group">
+          <label for="contract">Контракт</label>
+          <select class="form-control" id="contract">
+            <option value="" selected disabled hidden>--</option>
+            <option>Ежемесячный</option>
+            <option>Годовой</option>
+            <option>Двух годовой</option>
+          </select>
+        </div>
+        <div class="col">
+          <label for="paperless">Безбумажные чеки</label>
+          <select class="form-control" id="paperless">
+            <option value="" selected disabled hidden>--</option>
+            <option>Да</option>
+            <option>Нет</option>
+          </select>
+        </div>
+        <div class="col">
+          <label for="payment_method">Способ оплаты</label>
+          <select class="form-control" id="payment_method">
+            <option value="" selected disabled hidden>--</option>
+            <option>Электронный чек</option>
+            <option>Почтовый перевод</option>
+            <option>Банковский перевод</option>
+            <option>Кредитная карта</option>
+          </select>
+        </div>
+        <div class="col">
+          <label for="monthly_charges">Оплаты за месяц</label>
+          <input type="number" class="form-control" id="monthly_charges">
+        </div>
+        <div class="col">
+          <label for="total_charges">Общая сумма</label>
+          <input type="number" class="form-control" id="total_charges">
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <div class="form-row justify-content-end">
+          <a class="btn btn-outline-primary btn-block" href="#" role="button" id="predict_btn">Прогноз</a>
+          <a class="btn btn-outline-success btn-block" href="#" role="button" id="addtodb_btn">Добавить данные в БД</a>
+          <!-- <button class="btn btn-outline-primary btn-block" id="add_btn">Добавить</button> -->
+        </div>
+      </div>
+    </form>
+  </div> <!--Container -->
+{% endblock %}
