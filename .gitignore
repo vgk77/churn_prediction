@@ -106,3 +106,13 @@ venv.bak/
 #IDEs
 .idea/
 
+#Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+#MAC 
+.DS_Store
+
+#Configs
+config.py
+

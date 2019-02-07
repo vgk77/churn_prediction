@@ -1,15 +1,15 @@
 from flask import Flask
 from flask import request
-import dash_core_components as dcc
-import dash_html_components as html
+# import dash_core_components as dcc
+# import dash_html_components as html
 
 from app.logic import churn_prediction, preprocess_data
 
 
-app.layout = html.Div([
-    dcc.Location(id='url', refresh=False),
-    html.Div(id='page-content')
-])
+# app.layout = html.Div([
+#     dcc.Location(id='url', refresh=False),
+#     html.Div(id='page-content')
+# ])
 
 
 def create_app():

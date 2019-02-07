@@ -1,7 +1,7 @@
 import requests
 import json
 
-with open('data.json') as json_file:
+with open('data_test_predict.json') as json_file:
     json_data = json.load(json_file)
 
 url = "http://127.0.0.1:5000/predict"

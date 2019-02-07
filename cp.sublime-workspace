@@ -119,6 +119,16 @@
 	},
 	"buffers":
 	[
+		{
+			"file": "test_client/data_test_predict.json",
+			"settings":
+			{
+				"buffer_size": 546,
+				"encoding": "UTF-8",
+				"line_ending": "Unix",
+				"name": "{\"customer_id\": \"rfe\", \"gender\": \"Male\", \"senior_c"
+			}
+		}
 	],
 	"build_system": "",
 	"build_system_choices":
@@ -228,7 +238,7 @@
 	[
 		"/Users/val/projects/lp11/churn_prediction",
 		"/Users/val/projects/lp11/churn_prediction/predictapp",
-		"/Users/val/projects/lp11/churn_prediction/webapp"
+		"/Users/val/projects/lp11/churn_prediction/test_client"
 	],
 	"file_history":
 	[
@@ -334,8 +344,42 @@
 	"groups":
 	[
 		{
+			"selected": 0,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": "test_client/data_test_predict.json",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 546,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								545,
+								545
+							]
+						],
+						"settings":
+						{
+							"SL.66.region_keys":
+							[
+								"sublime_linter.protected_regions"
+							],
+							"auto_name": "{\"customer_id\": \"rfe\", \"gender\": \"Male\", \"senior_c",
+							"syntax": "Packages/JavaScript/JSON.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
 			]
 		}
 	],
