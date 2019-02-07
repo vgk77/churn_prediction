@@ -1,8 +1,9 @@
 import dash
 import dash_html_components as html
-from flask import render_template, url_for, flash, redirect
+from flask import flash, redirect, request, render_template, url_for
 
-from app.logic import preprocess_form_data
+
+from app.logic import preprocess_form_data, get_probability
 from app.model import db
 from app.forms import PredictionForm
 
@@ -14,7 +15,7 @@ def create_app():
     app = dash.Dash(
         __name__,
         external_stylesheets=external_stylesheets,
-        url_base_pathname='/dash/',
+        url_base_pathname='/analytic/',
     )
 
     server = app.server
@@ -25,26 +26,26 @@ def create_app():
         html.H2('Hello Dash')
     ])
 
-    @server.route('/prediction')
+    @server.route('/prediction', methods=['GET', 'POST'])
     def prediction():
-        title = 'Churn Prediction'
-        prediction_form = PredictionForm()
-        return render_template('prediction.html', page_title=title, form=prediction_form)
-
-    @server.route('/process-prediction', methods=['POST'])
-    def process_prediction():
+        title = 'Введите данные клиента'
         form = PredictionForm()
-        if form.validate_on_submit():
-            result = preprocess_form_data(form.data)
-        else:
-            result = 'qq'
-
-        return result
-
+        if request.method == 'GET':
+            return render_template('prediction.html', page_title=title, form=form)
+        elif request.method == 'POST':
+            if form.validate_on_submit():
+                # return str(form.data)
+                json_data = preprocess_form_data(form.data)
+                proba = get_probability(json_data)
+                # print(str(json_data)) 
+                if proba:
+                    form.probability.data = proba
+                    return render_template('prediction.html', result=proba, form=form)
+                    # return f'Вероятность ухода: {proba} %'
+                    # return render_template('prediction.html', page_title=title, form=form)
+                else:
+                    return 'Служба прогноза не доступна'
+            else:
+                return 'Передаваемые данные не валидны'
+        
     return server
-
-    # @server.route('/dash')
-    # def show_dash():
-    #    app.layout = html.Div([
-    #        html.H2('Hello Dash')
-    #    ])

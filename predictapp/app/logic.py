@@ -5,8 +5,8 @@ from sklearn.preprocessing import StandardScaler
 
 
 def preprocess_data(user_json):
-    dataset = pd.DataFrame(user_json)
-    #dataset = pd.read_json(user_json)
+    dataset = pd.DataFrame(user_json, index=[0])
+    # dataset = pd.read_json(user_json)
     # разделяем колонки на два типа (категориальные и вещественные).
     numeric_cols = ['tenure', 'monthly_charges', 'total_charges']
     categorical_cols = list(set(dataset.columns.values.tolist(
@@ -33,4 +33,4 @@ def preprocess_data(user_json):
 def churn_prediction(preprocessed_df, pkl_model):
     our_model = joblib.load(pkl_model)
     # возвращаем только вероятности отвала
-    return our_model.predict_proba(preprocessed_df)[:, 0]
+    return our_model.predict_proba(preprocessed_df)[:,0]
