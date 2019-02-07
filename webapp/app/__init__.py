@@ -1,14 +1,15 @@
 import dash
+from dash.dependencies import Input, Output
+import dash_core_components as dcc
 import dash_html_components as html
 from flask import render_template, url_for, flash, redirect
 
 from app.logic import preprocess_form_data
 from app.model import db
 from app.forms import PredictionForm
-
+from app.analytics import get_columns, get_statistics
 
 external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
-
 
 def create_app():
     app = dash.Dash(
@@ -22,8 +23,26 @@ def create_app():
     db.init_app(server)
 
     app.layout = html.Div([
-        html.H2('Hello Dash')
-    ])
+            html.H1('Churn prediction analysis'),
+            dcc.Dropdown(
+                id='xaxis-column',
+                options=[{'label': i, 'value': i} for i in get_columns()],
+                value='gender'
+                        ),
+            dcc.Graph(id='example-graph')])
+    
+    @app.callback(Output('example-graph', 'figure'),
+                [Input('xaxis-column', 'value')])
+    def display_graph(value):
+        result_churned = get_statistics(value, query = True)
+        result_not_churned= get_statistics(value, query = False)
+        return {
+           
+           'data': [{'x': list(map(lambda x: x[0],result_churned)), 'y': list(map(lambda x: x[1],result_churned)), 'type': 'bar', 'name': 'Churn'},
+                   {'x': list(map(lambda x: x[0],result_not_churned)), 'y': list(map(lambda x: x[1],result_not_churned)), 'type': 'bar', 'name': 'Not Churn'},],
+            'layout':{
+                'title': 'Churn by '+value
+                } }
 
     @server.route('/prediction')
     def prediction():
@@ -43,8 +62,3 @@ def create_app():
 
     return server
 
-    # @server.route('/dash')
-    # def show_dash():
-    #    app.layout = html.Div([
-    #        html.H2('Hello Dash')
-    #    ])
