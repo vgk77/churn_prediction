@@ -1,1 +1,25 @@
-{"customer_id": "qwefasd", "gender": "Male", "senior_citizen": false, "partner": false, "dependents": false, "tenure": 24, "phone_service": false, "multiplelines": "NO_PHONE", "internet_service": "Fiber optic", "online_security": "NO_INTERNET", "streaming_tv": "NO_INTERNET", "online_backup": "NO_INTERNET", "streaming_movies": "NO_INTERNET", "device_protection": "NO_INTERNET", "techsupport": "NO_INTERNET", "contract": "Month-to-month", "paperless": false, "payment_method": "Electronic check", "monthly_charges": 23.56, "total_charges": 45.67, "probability": null}
+[
+    {
+        "customer_id": "qwefasd",
+        "gender": "Male",
+        "senior_citizen": false,
+        "partner": false,
+        "dependents": false,
+        "tenure": 24,
+        "phone_service": false,
+        "multiplelines": "NO_PHONE",
+        "internet_service": "Fiber optic",
+        "online_security": "NO_INTERNET",
+        "streaming_tv": "NO_INTERNET",
+        "online_backup": "NO_INTERNET",
+        "streaming_movies": "NO_INTERNET",
+        "device_protection": "NO_INTERNET",
+        "techsupport": "NO_INTERNET",
+        "contract": "Month-to-month",
+        "paperless": false,
+        "payment_method": "Electronic check",
+        "monthly_charges": 23.56,
+        "total_charges": 45.67,
+        "probability": null
+    }
+]

@@ -11,7 +11,12 @@ external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
 
 
 def create_app():
-    app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
+    app = dash.Dash(
+        __name__,
+        external_stylesheets=external_stylesheets,
+        url_base_pathname='/dash/',
+    )
+
     server = app.server
     server.config.from_pyfile('config.py')
     db.init_app(server)
