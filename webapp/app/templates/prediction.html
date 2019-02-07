@@ -1,0 +1,104 @@
+{% extends 'base.html' %}
+{% block body_content %}
+
+<form action="{{ url_for('process_prediction') }}" method="post">
+  {{ form.hidden_tag() }}
+  <div class="form-row">
+    <div class="col-md-10">
+      {{ form.customer_id.label }}
+      {{ form.customer_id() }}
+    </div>
+    <div class="col">
+      {{ form.gender.label }}
+      {{ form.gender() }}
+    </div>
+    
+    
+  </div>
+  <div class="form-row">
+    <div class="col">
+      {{ form.senior_citizen.label }}
+      {{ form.senior_citizen() }}
+      {{ form.partner.label }}
+      {{ form.partner() }}
+      {{ form.dependents.label }}
+      {{ form.dependents() }}
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="col-md-3">
+      {{ form.multiplelines.label }}
+      {{ form.multiplelines() }}
+      {{ form.phone_service.label }}
+      {{ form.phone_service() }}
+    </div>
+    <div class="col-md-3">
+      {{ form.internet_service.label }}
+      {{ form.internet_service() }}
+    </div>
+    <div class="col">
+      {{ form.online_security.label }}
+      {{ form.online_security() }}
+      {{ form.streaming_tv.label }}
+      {{ form.streaming_tv() }}
+      
+    </div>
+    <div class="col">
+      {{ form.online_backup.label }}
+      {{ form.online_backup() }}
+      {{ form.streaming_movies.label }}
+      {{ form.streaming_movies() }}
+      
+    </div>
+    <div class="col">
+      {{ form.device_protection.label }}
+      {{ form.device_protection() }}
+      {{ form.techsupport.label }}
+      {{ form.techsupport() }}
+      
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="col-md-3">
+      {{ form.contract.label }}
+      {{ form.contract() }}
+    </div>
+    <div class="col-md-3">
+      {{ form.payment_method.label }}
+      {{ form.payment_method() }}
+      {{ form.paperless.label }}
+      {{ form.paperless() }}
+    </div>
+    <div class="col">
+      {{ form.tenure.label }}
+      {{ form.tenure() }}
+     </div>
+    <div class="col">
+      {{ form.monthly_charges.label }}
+      {{ form.monthly_charges() }}
+    </div>
+    <div class="col">
+      {{ form.total_charges.label }}
+      {{ form.total_charges() }}
+    </div>
+  </div>
+    
+  <!-- <div class="form-group"> -->
+    <div class="form-row">
+      <div class="col-md-6">
+      </div>
+      <div class="col">
+        <!-- {{ form.probability.label }} -->
+        <!-- {{ form.probability() }}    -->
+      </div>
+      <div class="col">
+      </div>
+      <!-- <a class="btn btn-outline-success btn-block" href="#" role="button" id="addtodb_btn">Добавить данные в БД</a> -->
+    </div>
+      <div class="form-row">
+        <input class="btn btn-outline-success btn-block" type ="submit" name="action" value="Прогноз вероятности ухода">
+         {{ form.action }}
+      </div>
+</form>
+
+{% endblock %}
