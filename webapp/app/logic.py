@@ -16,9 +16,9 @@ def preprocess_form_data(form_dict):
 
 def get_probability(json_data):
     response = requests.post(PREDICTAPP_URL, json=json_data)
-    print(json_data)
-    print(type(json_data))
-    print(response.status_code) 
+    # print(json_data)
+    # print(type(json_data))
+    # print(response.status_code) 
     if response.status_code == 200:
         return response.text
     else:

@@ -37,15 +37,17 @@ def create_app():
                 # return str(form.data)
                 json_data = preprocess_form_data(form.data)
                 proba = get_probability(json_data)
-                # print(str(json_data)) 
+                # print(str(json_data))
                 if proba:
                     form.probability.data = proba
-                    return render_template('prediction.html', result=proba, form=form)
+                    # print(type(proba))
+                    rez = round(float(proba[1:-1]), 3) * 100
+                    return render_template('prediction.html', result=rez, form=form)
                     # return f'Вероятность ухода: {proba} %'
                     # return render_template('prediction.html', page_title=title, form=form)
                 else:
                     return 'Служба прогноза не доступна'
             else:
                 return 'Передаваемые данные не валидны'
-        
+
     return server
