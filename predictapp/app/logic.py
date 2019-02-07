@@ -5,7 +5,8 @@ from sklearn.preprocessing import StandardScaler
 
 
 def preprocess_data(user_json):
-    dataset = pd.read_json(user_json)
+    dataset = pd.DataFrame(user_json)
+    #dataset = pd.read_json(user_json)
     # разделяем колонки на два типа (категориальные и вещественные).
     numeric_cols = ['tenure', 'monthly_charges', 'total_charges']
     categorical_cols = list(set(dataset.columns.values.tolist(
