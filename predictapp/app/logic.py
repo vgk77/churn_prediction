@@ -6,38 +6,20 @@ from sklearn.preprocessing import StandardScaler
 
 def preprocess_data(user_json):
     dataset = pd.read_json(user_json)
-    dataset['TotalCharges'] = dataset['TotalCharges'].replace(' ', np.nan)
-    # Дропаем строки с пропущенными значениями TotalCharges
-    dataset = dataset[dataset['TotalCharges'].notnull()]
-    dataset = dataset.reset_index()[dataset.columns]
-
-    # переведем в вещественные и целые числа
-    dataset['TotalCharges'] = dataset['TotalCharges'].astype(float)
-    dataset['MonthlyCharges'] = dataset['MonthlyCharges'].astype(float)
-    dataset['tenure'] = dataset['tenure'].astype(int)
-
-    # а здесь наоборот переводим в категориальную переменную (да/нет)
-    dataset['SeniorCitizen'] = dataset['SeniorCitizen'].replace(
-        {1: 'Yes', 0: 'No'})
-
     # разделяем колонки на два типа (категориальные и вещественные).
-    numeric_cols = ['tenure', 'MonthlyCharges', 'TotalCharges']
+    numeric_cols = ['tenure', 'monthly_charges', 'total_charges']
     categorical_cols = list(set(dataset.columns.values.tolist(
-    )) - set(numeric_cols) - set(['Churn', 'customerID']))
+    )) - set(numeric_cols) - set(['churn', 'customer_id']))
 
     X_number = dataset[numeric_cols]
     X_categ = dataset[categorical_cols]
-    # на всякий случай все категориальные приведем к строке
-    X_categ = X_categ.astype(str)
 
-    encoder = joblib.load('model_data/encoder.joblib')
     # Преобразуем категориальные переменные к вещественному виду
+    encoder = joblib.load('model_data/encoder.joblib')
     X_categ_encoded = encoder.transform(X_categ.T.to_dict().values())
 
     # нормализуем вещественные признаки
-    scaler = StandardScaler()
-    # scaler = joblib.load('scaler.joblib')
-    scaler.fit(X_number)
+    scaler = joblib.load('model_data/scaler.joblib')
     X_number_scaled = scaler.transform(X_number)
 
     # cконкатенируем по горизонтали категориальные и вещественные фичи 

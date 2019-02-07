@@ -24,7 +24,7 @@ def create_app():
         # TODO: Обработать исключения при не правильном json запросе
         result = str(churn_prediction(
             preprocess_data(request.get_json()), 
-            'model_data/rf_model.joblib'),
+            'model_data/model.joblib'),
         )
         return result
 
