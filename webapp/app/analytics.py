@@ -4,21 +4,21 @@ import sqlite3
 query_true =  """
     select {0}, 
     count(*)
-    from churn
+    from predictions
     where churn = True
     group by {0};"""
 
 query_false =  """
     select {0}, 
     count(*)
-    from churn
+    from predictions
     where churn = False
     group by {0};"""
 
 def get_columns():
     conn = sqlite3.connect("webapp.db")
     cur = conn.cursor()
-    result_columns = list(cur.execute("""PRAGMA table_info(churn);"""))
+    result_columns = list(cur.execute("""PRAGMA table_info(predictions);"""))
     columns = list(map(lambda x: x[1], result_columns[1:]))
     cur.close()
     conn.close()
