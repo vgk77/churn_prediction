@@ -50,7 +50,7 @@ class Predictions(db.Model):
     monthly_charges = db.Column(db.Float, nullable=False)
     total_charges = db.Column(db.Float, nullable=False)
     churn = db.Column(db.Boolean, nullable=True)
-    probability = db.Column(db.Float)
+    probability = db.Column(db.Float, nullable=True)
 
     def __repr__(self):
         return '{} {}'.format(self.client_id, self.probability)

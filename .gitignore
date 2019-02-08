@@ -116,3 +116,10 @@ venv.bak/
 #Configs
 config.py
 
+#DB files
+*.db
+
+#Old, tmp files
+*.old
+*.tmp
+

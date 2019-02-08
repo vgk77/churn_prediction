@@ -16,9 +16,6 @@ def preprocess_form_data(form_dict):
 
 def get_probability(json_data):
     response = requests.post(PREDICTAPP_URL, json=json_data)
-    # print(json_data)
-    # print(type(json_data))
-    # print(response.status_code) 
     if response.status_code == 200:
         return response.text
     else:
@@ -52,5 +49,11 @@ def add_prediction(form):
             probability=form.probability.data,
             churn = 'null'
         )
-        db.session.add(new_prediction)
-        db.session.commit()
+        try:
+            db.session.add(new_prediction)
+            db.session.commit()
+            return 'DATA ADD'
+        except Exception as e:
+            return(str(e))
+    else:
+        return 'data exists'
