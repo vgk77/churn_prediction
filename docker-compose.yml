@@ -3,12 +3,12 @@ version: '3'
 services:
 
   predict_server:
-    container_name: predict_server
+    container_name: predictapp
     restart: always
-    build: ./cp_server
+    build: ./predictapp
     ports:
       - "8000:8000"
-    command: gunicorn -w 3 -b :8000 main:app
+    command: gunicorn -w 3 -b :8000 app:create_app()
 
 
   nginx:
@@ -18,4 +18,4 @@ services:
     ports:
       - "8080:80"
     depends_on:
-      - cp_server
+      - predictapp

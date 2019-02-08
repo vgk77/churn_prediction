@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block body_content %}
 
-<form action="{{ url_for('process_prediction') }}" method="post">
+<form action="{{ url_for('prediction') }}" method="post">
   {{ form.hidden_tag() }}
   <div class="form-row">
     <div class="col-md-10">
@@ -12,8 +12,6 @@
       {{ form.gender.label }}
       {{ form.gender() }}
     </div>
-    
-    
   </div>
   <div class="form-row">
     <div class="col">
@@ -80,6 +78,11 @@
     <div class="col">
       {{ form.total_charges.label }}
       {{ form.total_charges() }}
+    </div>
+  </div>
+  <div class="form-row justify-content-end">
+    <div class="panel">
+      <p class="lead">{{ form.probability.label }}: {{ result }}%</p>
     </div>
   </div>
     

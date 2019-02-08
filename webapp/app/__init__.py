@@ -2,9 +2,10 @@ import dash
 from dash.dependencies import Input, Output
 import dash_core_components as dcc
 import dash_html_components as html
-from flask import render_template, url_for, flash, redirect
+from flask import flash, redirect, request, render_template, url_for
 
-from app.logic import preprocess_form_data
+
+from app.logic import preprocess_form_data, get_probability
 from app.model import db
 from app.forms import PredictionForm
 from app.analytics import get_columns, get_statistics
@@ -15,7 +16,7 @@ def create_app():
     app = dash.Dash(
         __name__,
         external_stylesheets=external_stylesheets,
-        url_base_pathname='/dash/',
+        url_base_pathname='/analytic/',
     )
 
     server = app.server
@@ -44,21 +45,28 @@ def create_app():
                 'title': 'Churn by '+value
                 } }
 
-    @server.route('/prediction')
+    @server.route('/prediction', methods=['GET', 'POST'])
     def prediction():
-        title = 'Churn Prediction'
-        prediction_form = PredictionForm()
-        return render_template('prediction.html', page_title=title, form=prediction_form)
-
-    @server.route('/process-prediction', methods=['POST'])
-    def process_prediction():
+        title = 'Введите данные клиента'
         form = PredictionForm()
-        if form.validate_on_submit():
-            result = preprocess_form_data(form.data)
-        else:
-            result = 'qq'
-
-        return result
+        if request.method == 'GET':
+            return render_template('prediction.html', page_title=title, form=form)
+        elif request.method == 'POST':
+            if form.validate_on_submit():
+                # return str(form.data)
+                json_data = preprocess_form_data(form.data)
+                proba = get_probability(json_data)
+                # print(str(json_data))
+                if proba:
+                    form.probability.data = proba
+                    # print(type(proba))
+                    rez = round(float(proba[1:-1]), 3) * 100
+                    return render_template('prediction.html', result=rez, form=form)
+                    # return f'Вероятность ухода: {proba} %'
+                    # return render_template('prediction.html', page_title=title, form=form)
+                else:
+                    return 'Служба прогноза не доступна'
+            else:
+                return 'Передаваемые данные не валидны'
 
     return server
-

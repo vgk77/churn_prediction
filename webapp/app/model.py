@@ -49,6 +49,7 @@ class Predictions(db.Model):
     payment_method = db.Column(db.String, nullable=False)
     monthly_charges = db.Column(db.Float, nullable=False)
     total_charges = db.Column(db.Float, nullable=False)
+    churn = db.Column(db.Boolean, nullable=True)
     probability = db.Column(db.Float)
 
     def __repr__(self):
