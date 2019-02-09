@@ -25,7 +25,7 @@ def create_app():
     db.init_app(server)
 
     app.layout = html.Div([
-        html.H1('Churn prediction analysis'),
+        html.H1('Предсказание оттока клиентов'),
         dcc.Dropdown(
             id='xaxis-column',
             options=[{'label': i, 'value': i} for i in get_columns()],
@@ -55,33 +55,46 @@ def create_app():
         title = 'Введите данные клиента'
         form = PredictionForm()
         if form.validate_on_submit():
-            new_prediction = Predictions(
-                customer_id = form.customer_id.data,
-                gender=form.gender.data,
-                senior_citizen=form.senior_citizen.data,
-                partner=form.partner.data,
-                dependents=form.dependents.data,
-                tenure=form.tenure.data,
-                phone_service=form.phone_service.data,
-                multiplelines=form.multiplelines.data,
-                internet_service=form.internet_service.data,
-                online_security=form.online_security.data,
-                streaming_tv=form.streaming_tv.data,
-                online_backup=form.online_backup.data,
-                streaming_movies=form.streaming_movies.data,
-                device_protection=form.device_protection.data,
-                techsupport=form.techsupport.data,
-                contract=form.contract.data,
-                paperless=form.paperless.data,
-                payment_method=form.payment_method.data,
-                monthly_charges=form.monthly_charges.data,
-                total_charges=form.total_charges.data,
-                probability=form.probability.data,    
-            )
-            db.session.add(new_prediction)
-            db.session.commit()
-            flash('Клиент добавлен.')
-            return redirect('/')
+            # if request.form.post['predict_btn'] == 'qqq':
+            # flash(request.form.post['predict_btn'])
+
+            json_data = preprocess_form_data(form.data)
+            proba = get_probability(json_data)
+            #     form.probability.data = proba
+            proba_massage = round(float(proba[1:-1]), 3) * 100
+            prediction_exists = Predictions.query.filter(
+                Predictions.customer_id == form.customer_id.data).count()
+            if not prediction_exists:
+                new_prediction = Predictions(
+                    customer_id=form.customer_id.data,
+                    gender=form.gender.data,
+                    senior_citizen=form.senior_citizen.data,
+                    partner=form.partner.data,
+                    dependents=form.dependents.data,
+                    tenure=form.tenure.data,
+                    phone_service=form.phone_service.data,
+                    multiplelines=form.multiplelines.data,
+                    internet_service=form.internet_service.data,
+                    online_security=form.online_security.data,
+                    streaming_tv=form.streaming_tv.data,
+                    online_backup=form.online_backup.data,
+                    streaming_movies=form.streaming_movies.data,
+                    device_protection=form.device_protection.data,
+                    techsupport=form.techsupport.data,
+                    contract=form.contract.data,
+                    paperless=form.paperless.data,
+                    payment_method=form.payment_method.data,
+                    monthly_charges=form.monthly_charges.data,
+                    total_charges=form.total_charges.data,
+                    probability=form.probability.data,
+                )
+                db.session.add(new_prediction)
+                db.session.commit()
+                flash(f'Вероятность ухода: {proba_massage} %')
+                flash('Клиент добавлен.')
+                return redirect('/')
+            else:
+                flash('Такой клиент уже существует')
 
         return render_template('prediction.html', form=form)
 
@@ -103,6 +116,6 @@ def create_app():
         #         else:
         #             return 'Служба прогноза не доступна'
         #     else:
-                # return 'Передаваемые данные не валидны'
+        # return 'Передаваемые данные не валидны'
 
     return server

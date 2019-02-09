@@ -118,6 +118,7 @@ config.py
 
 #DB files
 *.db
+*.db-journal
 
 #Old, tmp files
 *.old

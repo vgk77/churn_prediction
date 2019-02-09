@@ -162,9 +162,6 @@ class PredictionForm(FlaskForm):
         render_kw={"class": "form-control"},
     )
     action = SubmitField(
-        'Добавить в БД',
+        'Определить вероятность ухода и добавить в БД',
         render_kw={"class": "btn btn-primary btn-block"})
 
-    # predict = SubmitField(
-    #     'Прогноз вероятности ухода',
-    #     render_kw={"class": "btn btn-primary btn-block", "name": "submit", "value": "Pr"})

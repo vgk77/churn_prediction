@@ -1,7 +1,10 @@
 {% extends 'base.html' %}
 {% block body_content %}
 
-<form action="{{ url_for('prediction') }}" method="post">
+<!-- <script type=text/javascript src="{{ url_for('static', filename='addform.js') }}"></script> -->
+
+
+<form action="" method="post">
   {{ form.hidden_tag() }}
   <div class="form-row">
     <div class="col-md-10">
@@ -82,7 +85,7 @@
   </div>
   <div class="form-row justify-content-end">
     <div class="panel">
-      <p class="lead">{{ form.probability.label }}: {{ result }}%</p>
+      <!-- <p class="lead">{{ form.probability.label }}: {{ result }}%</p> -->
     </div>
   </div>
     
@@ -99,8 +102,10 @@
       <!-- <a class="btn btn-outline-success btn-block" href="#" role="button" id="addtodb_btn">Добавить данные в БД</a> -->
     </div>
       <div class="form-row">
-        <input class="btn btn-outline-success btn-block" type ="submit" name="action" value="Прогноз вероятности ухода">
+        <!-- <a class="btn btn-outline-primary btn-block" href="/prediction" role="button" name="predict_btn" value="qqq">Прогноз вероятности ухода</a> -->
+        <!-- <input class="btn btn-outline-success btn-block" href="/"  id="predict_btn" value="Прогноз вероятности ухода"> -->
          {{ form.action }}
+    
       </div>
 </form>
 

@@ -13,19 +13,33 @@
   </head>
   <body>
     <div class="container">
+      <!-- Nav bar -->
       <nav class="nav">
-        <a class="nav-link" href="/">Главная</a>
-        <a class="nav-link active" href="/prediction">Прогноз</a>
+        <a class="nav-link" href="{{ url_for('homepage') }}">Главная</a>
+        <a class="nav-link active" href="{{ url_for('prediction') }}">Прогноз</a>
         <a class="nav-link" href="/analytic">Аналитика</a>
         <!-- <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a> -->
       </nav>
+
+      <!-- Flash messages -->
+      {% with messages = get_flashed_messages() %}
+      {% if messages %}
+      <ul>
+        {% for message in messages %}
+        <li>{{ message }}</li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+      {% endwith %}
+      {% block content %}{% endblock %}
+
       <header>
         <h3 class="text-left my-4">{{ page_title }}</h3>    
       </header>
       {% block body_content %}{% endblock %}
 
     </div> <!-- container -->
-
+ 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>

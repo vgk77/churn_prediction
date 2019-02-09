@@ -23,11 +23,11 @@ function formClear() {
   
   $(document).ready(function(){
     $("#phone_service").change(function(){
-      if ($("#phone_service")[0].value == 'no'){
-        $("#multilines").val('no_phone_service');
+      if ($("#phone_service")[0].value == 0){
+        $("#multiplelines").val('NO_PHONE');
       }
       else {
-        $("#multilines").val('');
+        $("#multilines").val('No');
       }
     });
 

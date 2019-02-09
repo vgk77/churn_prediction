@@ -33,4 +33,4 @@ def preprocess_data(user_json):
 def churn_prediction(preprocessed_df, pkl_model):
     our_model = joblib.load(pkl_model)
     # возвращаем только вероятности отвала
-    return our_model.predict_proba(preprocessed_df)[:,0]
+    return our_model.predict_proba(preprocessed_df)[:,1]
